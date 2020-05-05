@@ -1,7 +1,10 @@
 
 <?php require(__DIR__.'/functions/functions.php'); 
 add1ToCart($_GET['event_id']);
+// heregit 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
