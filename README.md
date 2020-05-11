@@ -39,3 +39,4 @@ which provide web hosting service makes it easier for one to host a PHP web appl
 
 ## Data structures used
 In this project, data retrieved from the database was stored in arrays before it was displayed in the HTML document. This is because the runtime of retrieving data from an array is linear. Hence it will quicken up the speed with which data is retrieved and displayed on the web pages.
+Arrays were used in the the displayProducts function in the function.php file , in the functions folder
