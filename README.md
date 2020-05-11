@@ -1,7 +1,7 @@
 # e-events
 For our software engineering project we are creating an event and conference management system for mpontu technologies.  
 
-#Technology & Justification
+## Technology & Justification
 	
 In order to create and implement the software functions mentioned above, certain technologies were used.
 In this section of the report, a description of the various technologies and how they were implemented to perform the software
@@ -31,5 +31,5 @@ which provide web hosting service makes it easier for one to host a PHP web appl
 
 •	Flutterwave: Flutterwave is an application programming interface (API) which makes it easy to create and integrate a payment system into a web application. In this project it was used to create the payment system with which users can buy their tickets for an event
 
-#Data structures used
+## Data structures used
 In this project, data retrieved from the database was stored in arrays before it was displayed in the HTML document. This is because the runtime of retrieving data from an array is linear. Hence it will quicken up the speed with which data is retrieved and displayed on the web pages.
