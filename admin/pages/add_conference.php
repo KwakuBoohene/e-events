@@ -12,7 +12,6 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-
 <?php
 session_start();
 
@@ -20,13 +19,6 @@ session_start();
 if(!isset($_SESSION['username'])){
   header("location:../../Login/index.html");
 }
-
-require ('../../database/database.php');
-$conn = openDatabase();
-$sql = "SELECT * FROM conference";
-$results = $conn->query($sql);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +31,7 @@ $results = $conn->query($sql);
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>
-    Npontu-Events
+  	Npontu-Events
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -63,45 +55,44 @@ $results = $conn->query($sql);
         Npontu-Events
         </a></div>
         <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item" id="active">
-            <a class="nav-link" href="./dashboard.php">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="add_event.php">
-              <i class="material-icons">addition</i>
-              <p>Add Event</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="add_conference.php">
-              <i class="material-icons">addition</i>
-              <p>Add Conference</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="view_conferences.php">
-              <i class="material-icons">content_paste</i>
-              <p>Conference Attendees</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="view_events.php">
-              <i class="material-icons">content_paste</i>
-              <p>Event Attendees</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+          <ul class="nav">
+            <li class="nav-item" id="active">
+              <a class="nav-link" href="./dashboard.php">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="add_event.php">
+                <i class="material-icons">addition</i>
+                <p>Add Event</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="add_conference.php">
+                <i class="material-icons">addition</i>
+                <p>Add Conference</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="view_conferences.php">
+                <i class="material-icons">content_paste</i>
+                <p>Conference Attendees</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="view_events.php">
+                <i class="material-icons">content_paste</i>
+                <p>Event Attendees</p>
+              </a>
+            </li>
+          </ul>
+        </div>
     </div>
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
-        
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -129,52 +120,55 @@ $results = $conn->query($sql);
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">
-            <label>Choose Conference</label>
-
-              <form id="search_meeting">
-
-              <select class="form-control col-md-3" id="event">
-        <?php
-        if($results){
-          while($row=mysqli_fetch_array($results)){
-            $value = $row['conf_id'];
-            $event_name = $row['conf_name'];
-            echo "<option value='$value'>$event_name</option>";
-          }
-        }?>
-              </select>
-              <button class="btn btn-primary" >Search</button>
-              </form>
-
-<br>
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Select Conference to view Attendees' details</h4>
+                  <h4 class="card-title">Add Conference</h4>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          Name
-                        </th>
-                        <th>
-                          E-mail
-                        </th>
-                        <th>
-                          Number
-                        </th>
-                      </thead>
-                      <tbody id="conference_attendees">
-                        
-                      </tbody>
-                    </table>
-                  </div>
+
+
+                  <form id="add_conference" enctype="multipart/form-data"> 
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Conference Name</label>
+                          <input type="text" class="form-control" id="conference_name" name="conference_name" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Seats Available</label>
+                          <input type="number" class="form-control" id="seats_available" name="seats_available" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Conference Description </label>
+                          <textarea type="text" class="form-control" rows="4" id="conference_description" name="conference_description" required></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="">
+                          <label class="bmd-label-floating">Flier</label>
+                          <input type="file" class="form-control" id="image" name="image" required>                    
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <button class="btn btn-primary pull-right">Add</button>
+                    <div class="clearfix"></div>
+                  </form>
+
+                  
                 </div>
               </div>
             </div>
-            </div>
+    
           </div>
         </div>
       </div>
@@ -182,7 +176,7 @@ $results = $conn->query($sql);
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
-           
+         
             </ul>
           </nav>
           <div class="copyright float-right" id="date">
@@ -198,7 +192,6 @@ $results = $conn->query($sql);
       </script>
     </div>
   </div>
-
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -217,6 +210,8 @@ $results = $conn->query($sql);
   <script src="../assets/demo/demo.js"></script>
   <script src="../assets/js/system.js"></script>
   <script src="../assets/js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 </body>
 

@@ -5,7 +5,7 @@ $conn = openDatabase();
 
 $event_id = $_POST['event_id'];
 
-$sql = "SELECT * FROM conference_registration WHERE conf_id = 1";
+$sql = "SELECT * FROM payment WHERE event_id = $event_id";
 $results = $conn->query($sql);
 $output='';
 
@@ -14,7 +14,6 @@ foreach($results as $result){
     $output.= '<tr>'.
     '<td>'.$result['name'].'</td>'.
     '<td>'.$result['email'].'</td>'.
-    '<td>'.$result['number'].'</td>'.
     '</tr>'; 
 }
 echo $output;

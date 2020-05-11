@@ -13,8 +13,14 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <?php
+session_start();
 require ('../../database/database.php');
 $conn = openDatabase();
+
+if(!isset($_SESSION['username'])){
+  header("location:../../Login/index.html");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -59,13 +65,13 @@ $conn = openDatabase();
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="add_event.html">
+            <a class="nav-link" href="add_event.php">
               <i class="material-icons">addition</i>
               <p>Add Event</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="add_conference.html">
+            <a class="nav-link" href="add_conference.php">
               <i class="material-icons">addition</i>
               <p>Add Conference</p>
             </a>
@@ -76,6 +82,12 @@ $conn = openDatabase();
               <p>Conference Attendees</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="view_events.php">
+              <i class="material-icons">content_paste</i>
+              <p>Event Attendees</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -83,12 +95,7 @@ $conn = openDatabase();
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
-            <div class="float-right">
-              <a class="navbar-brand" href="../../index.php"><i class="material-icons">home</i></a>
-            </div>   
-            <div class="float-right">
-              <a class="navbar-brand" href="../../index.php"><i class="material-icons">home</i></a>
-            </div>  
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -97,14 +104,17 @@ $conn = openDatabase();
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+            <?php
+            if(isset($_SESSION['username'])){
+            ?>
               <li class="nav-item">
-                <a class="nav-link" href="../../index.php">
-                  <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
+                <a class="nav-link text-danger" href="" id="logout">Logout
+                  <i class="material-icons text-danger">logout</i>
                 </a>
-              </li>
+              </li> 
+           <?php
+            }
+              ?>
             </ul>
           </div>
         </div>

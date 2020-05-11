@@ -117,6 +117,42 @@ $('#login').on('submit', function (e){
 });
 
 
+$('#search_event').on('submit',function (e){
+    e.preventDefault();
+    let event_id = $('#event').val();
+
+    $.ajax({
+        type:'post',
+        url:'search_event.php',
+        data:{event_id:event_id},
+        success:function(response){
+            $('#event_attendees').html(response);
+        }
+    })
+})
+
+
+$('#logout').on('click',function (e){
+    e.preventDefault();
+    let logout = 'logout';
+    $.ajax({
+        type:'post',
+        url:'logout.php',
+        data:{logout:logout},
+        success:function(response){
+            if(response === 'success'){
+            location.href = "../../index.php"; 
+            }else{
+                Swal.fire(
+                    "Sorry",
+                    "An error occurred",
+                    "error"
+                );
+            }
+        }
+    })
+})
+
 
 
 

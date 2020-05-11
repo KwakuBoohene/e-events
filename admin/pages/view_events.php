@@ -14,6 +14,13 @@
 -->
 
 <?php
+session_start();
+
+
+if(!isset($_SESSION['username'])){
+  header("location:../../Login/index.html");
+}
+
 require ('../../database/database.php');
 $conn = openDatabase();
 $sql = "SELECT * FROM event";
@@ -63,13 +70,13 @@ $results = $conn->query($sql);
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="add_event.html">
+            <a class="nav-link" href="add_event.php">
               <i class="material-icons">addition</i>
               <p>Add Event</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="add_conference.html">
+            <a class="nav-link" href="add_conference.php">
               <i class="material-icons">addition</i>
               <p>Add Conference</p>
             </a>
@@ -93,9 +100,7 @@ $results = $conn->query($sql);
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
-          <div class="float-right">
-            <a class="navbar-brand" href="../../index.php"><i class="material-icons">home</i></a>
-          </div>
+      
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -104,14 +109,17 @@ $results = $conn->query($sql);
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+            <?php
+            if(isset($_SESSION['username'])){
+            ?>
               <li class="nav-item">
-                <a class="nav-link" href="../../index.php">
-                  <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
+                <a class="nav-link text-danger" href="" id="logout">Logout
+                  <i class="material-icons text-danger">logout</i>
                 </a>
-              </li>
+              </li> 
+           <?php
+            }
+              ?>
             </ul>
           </div>
         </div>
@@ -152,9 +160,6 @@ $results = $conn->query($sql);
                         </th>
                         <th>
                           E-mail
-                        </th>
-                        <th>
-                          Number
                         </th>
                       </thead>
                       <tbody id="event_attendees">

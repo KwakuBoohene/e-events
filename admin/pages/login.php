@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require ('../../database/database.php');
 $conn = openDatabase();
 
@@ -8,6 +8,8 @@ $results = $conn->query($sql);
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+$_SESSION['username'] = $username;
+
 
 
 foreach($results as $result){
