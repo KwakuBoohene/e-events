@@ -1,5 +1,11 @@
-# e-events
+# Error404
 For our software engineering project we are creating an event and conference management system for mpontu technologies.  
+
+## Software Function
+This project is aimed at making the process of event planning and organization easier by creating a web application (an Event Management System) which allows users to create events and conferences, and have others register for those conferences or buy tickets. The high-level functionalities focused on during the implementation phase were:
+•	Creating a platform where people interested in attending an event can book an event or purchase tickets for the event. 
+•	Creating an admin portal which allows event planners and organizers to create and manage events: This portal should allow users to specify the event details such as the number of tickets or seats available , price of the tickets , an image or flyer for the event , a description of the event and the event’s name. Upon adding an event to the system, the event should be shown on the purchasing and booking platform described in the point above.
+
 
 ## Technology & Justification
 	
